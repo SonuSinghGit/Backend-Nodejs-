@@ -12,8 +12,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on: ${PORT}`);
 });
 
-app.get("/",(res,req)=>{
-    res.send("welcome to node js backend")
-})
+app.get("/",(req,res)=>{
+    res.send("welcome to node js backend");
+});
 
 connectDB();
