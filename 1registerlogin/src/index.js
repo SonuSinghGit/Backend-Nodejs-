@@ -1,19 +1,15 @@
 import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/config.js";
-
-dotenv.config(); 
-
-const PORT = process.env.PORT || 9000;
+import { connectDB } from "./config/config.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Server is running on: ${PORT}`);
+app.listen(9000, async () => {
+  await console.log("Server is running on: 9000");
 });
 
-app.get("/",(req,res)=>{
-    res.send("welcome to node js backend");
-});
+await connectDB();
 
-connectDB();
+app.use("/api/users", userRoutes);
+
