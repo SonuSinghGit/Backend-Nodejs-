@@ -33,8 +33,6 @@ export const registerUser = async (req, res) => {
     });
   }
 };
-
-
 // LOGIN
 export const loginUser = async (req, res) => {
   try {
