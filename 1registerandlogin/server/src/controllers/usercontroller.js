@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
     if (!match) {
       return res.status(401).send({ message: "Invalid password" });
     }
-
+    
     res.status(200).send({
       message: "Login successful",
       user,
