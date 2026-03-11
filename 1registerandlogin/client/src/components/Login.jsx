@@ -1,13 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
-const { register, handleSubmit } = useform();
-
+import axios from "axios";
 function Login() {
+  const { register, handleSubmit,reset } = useForm();
+
+  const dataSubmit = async(data) => {
+    console.log("data", data);
+    const response = await axios.post("http://localhost:4000/api/v1/login",data)
+    if(response.status===200 || response.status===201){
+      alert("Login successfull")
+      reset()
+    }
+  };
   return (
     <div>
       <p className="text-2xl">Login Form</p>
-      <form>
+      <form onSubmit={handleSubmit(dataSubmit)}>
         <div className="mt-2">
           <label className="font-semibold">
             Email:
@@ -28,9 +36,12 @@ function Login() {
             />
           </label>
         </div>
-        <button className="mt-4 bg-blue-500 hover:bg-amber-300 text-white px-4 py-2 rounded-md"
-        type="submit"
-        >Login</button>
+        <button
+          className="mt-4 bg-blue-500 hover:bg-amber-300 text-white px-4 py-2 rounded-md"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
   );

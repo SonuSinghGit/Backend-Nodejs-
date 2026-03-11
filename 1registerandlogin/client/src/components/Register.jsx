@@ -1,11 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import axios from "axios";
 function Register() {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
 
   const dataSubmit = async(data) => {
+    const response = await axios.post("http://localhost:4000/api/v1/register",data);
+    if(response.status ===200 || response.status ===201){
+        alert("registration successfull");
+        reset();
+    }
+   
     console.log("data", data);
   };
 
