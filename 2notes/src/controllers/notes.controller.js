@@ -46,7 +46,7 @@ export const updateNotes = async (req, res) => {
     );
     if (!notes) {
       return res.status(400).json({
-        success: flase,
+        success: false,
         message: "No notes found",
       });
     }
@@ -60,6 +60,32 @@ export const updateNotes = async (req, res) => {
       success: false,
       message: "error during updated leads",
       data: error,
+    });
+  }
+};
+export const deleteNotes = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const notes = await Notes.findByIdAndDelete(id);
+
+    if (!notes) {
+      return res.status(404).json({
+        success: false,
+        message: "No note found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: notes,
+      message: "Note deleted successfully",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Service unavailable",
     });
   }
 };
