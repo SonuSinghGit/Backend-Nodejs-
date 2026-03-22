@@ -6,6 +6,4 @@ const postRoutes = express.Router()
 
 postRoutes.post("/create", upload.single("image"), createPost);
 
-
-
 export default postRoutes;
