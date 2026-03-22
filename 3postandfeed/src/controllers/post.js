@@ -1,5 +1,6 @@
 import { Post } from "../models/post.model.js";
 import { uploadOnCloudinary } from "../services/cloudinary.js";
+
 export const createPost = async (req, res) => {
     try {
         const { caption } = req.body;
@@ -34,3 +35,24 @@ export const createPost = async (req, res) => {
         });
     }
 };
+
+export const getPost= async(req,res)=>{
+
+    try {
+        const posts = await Post.find();
+        if(!posts){
+            return res.status(400).json({message:"post not found"})
+        }
+    
+        return res.status(200).json({
+            sucess:true,
+            message:"get post sucefully",
+            posts
+        })
+    } catch (error) {
+        return res.status(500).json({
+            sucess:false,
+            message:"Error during get posts"
+        })
+    }
+}
