@@ -12,7 +12,7 @@ export const createPost = async (req, res) => {
         if (!file) {
             return res.status(400).json({ message: "Image file is required." });
         }
-        // Upload to Cloudinary
+        // Upload on Cloudinary 
         const cloudinaryResponse = await uploadOnCloudinary(file.path);
         if (!cloudinaryResponse) {
             return res.status(500).json({ message: "Cloudinary upload failed" });
@@ -46,7 +46,7 @@ export const getPost= async(req,res)=>{
     
         return res.status(200).json({
             sucess:true,
-            message:"get post sucefully",
+            message:"get post successfully",
             posts
         })
     } catch (error) {
