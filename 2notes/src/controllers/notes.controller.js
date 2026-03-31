@@ -24,6 +24,9 @@ export const createNotes = async (req, res) => {
 export const getNotes = async (req, res) => {
   try {
     const notes = await Notes.find();
+    if(!notes){
+      return res.status(400).json({message:"Notes Note Found"})
+    }
     return res.status(200).json({
       success: true,
       data: notes,
